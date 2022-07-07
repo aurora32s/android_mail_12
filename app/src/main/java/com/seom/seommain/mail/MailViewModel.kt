@@ -33,6 +33,7 @@ class MailViewModel : ViewModel() {
     fun changeMailType(mailType: MailType) {
         // mail type에 따른 리스트 반환
         _mailStateLiveData.value = MailState.Success(
+            mailType.typeName,
             mailList.filter { it.type === mailType }
         )
     }

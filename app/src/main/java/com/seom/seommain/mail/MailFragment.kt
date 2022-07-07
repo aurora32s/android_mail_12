@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seom.seommain.adapter.mail.MailAdapter
 import com.seom.seommain.databinding.FragmentMailBinding
@@ -16,7 +17,7 @@ class MailFragment : Fragment() {
     private lateinit var binding: FragmentMailBinding
 
     private val mailAdapter by lazy {
-        MailAdapter(listOf())
+        MailAdapter()
     }
 
     override fun onCreateView(
@@ -31,15 +32,21 @@ class MailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
+        bindViews()
         observeData()
-        // 메일 데이터 요청
-        viewModel.fetchData()
     }
 
     private fun initViews() = with(binding) {
         titleTextView.text = "Seom Mail"
 
         mailRecyclerView.layoutManager = LinearLayoutManager(this@MailFragment.context)
+        mailRecyclerView.addItemDecoration(
+            DividerItemDecoration(
+                this@MailFragment.context,
+                LinearLayoutManager.VERTICAL
+            )
+        )
         mailRecyclerView.adapter = mailAdapter
     }
 
@@ -48,10 +55,11 @@ class MailFragment : Fragment() {
     }
 
     private fun observeData() = viewModel.mailStateLiveData.observe(viewLifecycleOwner) {
+        Log.d(TAG, it.toString())
         when (it) {
             MailState.UnInitialized -> {
-                initViews()
-                bindViews()
+                // 메일 데이터 요청
+                viewModel.fetchData()
             }
             MailState.Loading -> handleLoadingState()
             is MailState.Success -> handleSuccessState(it)
@@ -64,6 +72,8 @@ class MailFragment : Fragment() {
     }
 
     private fun handleSuccessState(state: MailState.Success) {
+
+        binding.mailTypeTextView.text = "\uD83D\uDC49\uD83C\uDFFB ${state.mailType}"
         // recycler list 변경
         mailAdapter.submitList(state.mails)
     }

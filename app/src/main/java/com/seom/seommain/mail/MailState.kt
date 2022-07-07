@@ -8,6 +8,7 @@ sealed interface MailState {
     object Loading: MailState
 
     data class Success(
+        val mailType: String,
         val mails: List<MailModel>
     ): MailState
 

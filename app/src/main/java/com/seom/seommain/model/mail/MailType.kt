@@ -1,9 +1,9 @@
 package com.seom.seommain.model.mail
 
-enum class MailType {
-    PRIMARY,
-    SOCIAL,
-    PROMOTION;
+enum class MailType(val typeName: String) {
+    PRIMARY("primary"),
+    SOCIAL("social"),
+    PROMOTION("promotion");
 
     companion object {
         fun getType(type: Int): MailType? =

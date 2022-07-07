@@ -9,6 +9,7 @@
     <!-- common -->
     <color name="white">#FFFFFF</color>
     <color name="black">#252525</color>
+    <color name="grey">#E3E3E3</color>
     <color name="error">#E34974</color>
 
     <!-- light mode -->

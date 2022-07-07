@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/white"
-        android:elevation="10dp"
+        android:translationZ="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,13 +24,28 @@
             tools:text="hello world" />
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/mailTypeTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/mailTypeContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:padding="10dp"
+        android:translationZ="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            android:id="@+id/mailTypeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_accent_border_box"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mailRecyclerView"
@@ -39,5 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mailTypeTextView" />
+        app:layout_constraintTop_toBottomOf="@id/mailTypeContainer"
+        tools:listitem="@layout/item_mail" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>

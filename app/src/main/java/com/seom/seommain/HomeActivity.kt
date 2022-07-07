@@ -25,19 +25,29 @@ class HomeActivity : AppCompatActivity() {
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.mailMenuItem -> replaceFragment(mailFragment)
-                R.id.settingMenuItem -> replaceFragment(settingFragment)
+                R.id.mailMenuItem -> replaceFragment(mailFragment, MailFragment.TAG)
+                R.id.settingMenuItem -> replaceFragment(settingFragment, SettingFragment.TAG)
             }
             true
         }
 
-        replaceFragment(mailFragment)
+        replaceFragment(mailFragment, MailFragment.TAG)
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, fragment)
-            commit()
+    private fun replaceFragment(fragment: Fragment, tag: String) {
+        val findFragment = supportFragmentManager.findFragmentByTag(tag)
+
+        supportFragmentManager.fragments.forEach { fm ->
+            supportFragmentManager.beginTransaction().hide(fm).commitAllowingStateLoss()
+        }
+
+        findFragment?.let {
+            supportFragmentManager.beginTransaction().show(it).commitAllowingStateLoss()
+        } ?: kotlin.run {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainer, fragment, tag)
+                commit()
+            }
         }
     }
 
