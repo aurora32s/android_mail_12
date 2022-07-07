@@ -6,4 +6,9 @@
     <string name="label_email">이메일</string>
     <string name="text_next">다음</string>
     <string name="app_logo_desc">app_logo</string>
+
+    <!-- 에러 문구 -->
+    <string name="error_nickname_length">닉네임은 6글자 이상 16글자 이하만 가능합니다.</string>
+    <string name="error_nickname_letter">영문 소문자/대문자와 숫자만 사용 가능합니다.</string>
+    <string name="error_email">적합하지 않은 이메일입니다.</string>
 </resources>
