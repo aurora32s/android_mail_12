@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SeomMail</string>
+
+    <!-- login page -->
+    <string name="label_nickname">닉네임</string>
+    <string name="label_email">이메일</string>
+    <string name="text_next">다음</string>
+    <string name="app_logo_desc">app_logo</string>
 </resources>
