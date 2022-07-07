@@ -15,4 +15,9 @@
     <!-- bottom navigation title -->
     <string name="menu_mail_title">Mail</string>
     <string name="menu_setting_title">Setting</string>
+
+    <!-- side navigation mail type -->
+    <string name="mail_type_primary">primary</string>
+    <string name="mail_type_social">social</string>
+    <string name="mail_type_promotion">promotion</string>
 </resources>

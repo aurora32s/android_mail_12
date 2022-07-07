@@ -5,25 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/white"
-        android:translationZ="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primary"
-            android:textStyle="bold"
-            tools:text="hello world" />
-    </androidx.appcompat.widget.Toolbar>
-
     <LinearLayout
         android:id="@+id/mailTypeContainer"
         android:layout_width="0dp"
@@ -56,5 +37,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mailTypeContainer"
         tools:listitem="@layout/item_mail" />
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>

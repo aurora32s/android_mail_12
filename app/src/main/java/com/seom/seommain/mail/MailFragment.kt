@@ -38,8 +38,6 @@ class MailFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
-        titleTextView.text = "Seom Mail"
-
         mailRecyclerView.layoutManager = LinearLayoutManager(this@MailFragment.context)
         mailRecyclerView.addItemDecoration(
             DividerItemDecoration(
