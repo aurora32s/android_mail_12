@@ -6,12 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.seom.seommain.adapter.mail.MailAdapter
 import com.seom.seommain.databinding.FragmentMailBinding
 
 class MailFragment : Fragment() {
 
     private val viewModel = MailViewModel()
     private lateinit var binding: FragmentMailBinding
+
+    private val mailAdapter by lazy {
+        MailAdapter(listOf())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +38,9 @@ class MailFragment : Fragment() {
 
     private fun initViews() = with(binding) {
         titleTextView.text = "Seom Mail"
+
+        mailRecyclerView.layoutManager = LinearLayoutManager(this@MailFragment.context)
+        mailRecyclerView.adapter = mailAdapter
     }
 
     private fun bindViews() = with(binding) {
@@ -55,8 +64,8 @@ class MailFragment : Fragment() {
     }
 
     private fun handleSuccessState(state: MailState.Success) {
-        // TODO recycler list 변경
-        Log.d(TAG, state.mails.toString())
+        // recycler list 변경
+        mailAdapter.submitList(state.mails)
     }
 
     private fun handleErrorState() {
