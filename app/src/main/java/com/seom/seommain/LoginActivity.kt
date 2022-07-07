@@ -3,12 +3,12 @@ package com.seom.seommain
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
-import com.seom.seommain.databinding.ActivityMainBinding
+import com.seom.seommain.databinding.ActivityLoginBinding
 import com.seom.seommain.util.Validation
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityLoginBinding
 
     private var validateFlagForNickname = false // 닉네임 유효성 검사 flag
     private var validateFlagForEmail = false // 이메일 유효성 검사 flag
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initViews()
@@ -58,7 +58,11 @@ class MainActivity : AppCompatActivity() {
         }
         // next button
         nextButton.setOnClickListener {
-            // TODO 메인 페이지로 이동
+            // 홈 화면으로 이동
+            val nickname = nicknameEditText.toString()
+            val email = emailEditText.toString()
+            startActivity(HomeActivity.getIntent(this@LoginActivity, nickname, email))
+            finish()
         }
     }
 
