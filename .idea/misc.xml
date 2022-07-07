@@ -9,7 +9,14 @@
         <entry key="app/src/main/res/drawable/background_rounded_button.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_email.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_error.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_mail.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_mail_selected.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_mail_tab.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_setting_tab.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/menu_icon_tint.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.19375" />
       </map>
     </option>
   </component>
