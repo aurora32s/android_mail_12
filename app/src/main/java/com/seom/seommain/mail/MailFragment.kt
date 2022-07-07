@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.seom.seommain.HomeActivity
 import com.seom.seommain.adapter.mail.MailAdapter
 import com.seom.seommain.databinding.FragmentMailBinding
 
@@ -32,12 +33,16 @@ class MailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews()
-        bindViews()
         observeData()
+        observeMailTypeData()
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     private fun initViews() = with(binding) {
+
         mailRecyclerView.layoutManager = LinearLayoutManager(this@MailFragment.context)
         mailRecyclerView.addItemDecoration(
             DividerItemDecoration(
@@ -53,15 +58,22 @@ class MailFragment : Fragment() {
     }
 
     private fun observeData() = viewModel.mailStateLiveData.observe(viewLifecycleOwner) {
-        Log.d(TAG, it.toString())
         when (it) {
             MailState.UnInitialized -> {
+                initViews()
+                bindViews()
                 // 메일 데이터 요청
                 viewModel.fetchData()
             }
             MailState.Loading -> handleLoadingState()
             is MailState.Success -> handleSuccessState(it)
             MailState.Error -> handleErrorState()
+        }
+    }
+
+    private fun observeMailTypeData() {
+        (activity as HomeActivity).mailTypeLiveData.observe(viewLifecycleOwner) {
+            viewModel.changeMailType(it)
         }
     }
 

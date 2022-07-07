@@ -14,7 +14,12 @@
         <entry key="app/src/main/res/drawable/ic_mail.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/ic_mail_selected.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/ic_mail_tab.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_menu_primary.xml" value="0.171" />
+        <entry key="app/src/main/res/drawable/ic_primary.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/ic_promotion.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.1805" />
         <entry key="app/src/main/res/drawable/ic_setting_tab.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_social.xml" value="0.1805" />
         <entry key="app/src/main/res/drawable/menu_icon_tint.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />

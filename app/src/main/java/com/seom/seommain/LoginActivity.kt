@@ -59,8 +59,8 @@ class LoginActivity : AppCompatActivity() {
         // next button
         nextButton.setOnClickListener {
             // 홈 화면으로 이동
-            val nickname = nicknameEditText.toString()
-            val email = emailEditText.toString()
+            val nickname = nicknameEditText.text.toString()
+            val email = emailEditText.text.toString()
             startActivity(HomeActivity.getIntent(this@LoginActivity, nickname, email))
             finish()
         }
