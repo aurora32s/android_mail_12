@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mail"
+        android:id="@+id/mailMenuItem"
         android:icon="@drawable/ic_mail_tab"
         android:title="@string/menu_mail_title"/>
 
     <item
-        android:id="@+id/setting"
+        android:id="@+id/settingMenuItem"
         android:icon="@drawable/ic_setting_tab"
         android:title="@string/menu_setting_title" />
 </menu>

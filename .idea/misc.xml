@@ -16,6 +16,8 @@
         <entry key="app/src/main/res/drawable/menu_icon_tint.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_mail.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.19375" />
       </map>
     </option>
