@@ -8,6 +8,11 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_user"/>
+
     <TextView
         android:id="@+id/nicknameTextView"
         android:layout_width="wrap_content"

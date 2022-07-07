@@ -11,6 +11,8 @@ import com.seom.seommain.model.mail.MailModel
 
 class MailAdapter() : ListAdapter<MailModel, MailViewHolder>(MailModel.DIFF_CALLBACK) {
 
+    override fun getItemViewType(position: Int): Int = currentList[position].type.ordinal
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MailViewHolder {
         return MailViewHolder(
             ItemMailBinding.inflate(LayoutInflater.from(parent.context), parent, false)

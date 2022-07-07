@@ -10,9 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:elevation="5dp"
         android:padding="10dp"
-        android:translationZ="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,12 +19,21 @@
             android:id="@+id/mailTypeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_accent_border_box"
+            android:background="@drawable/background_primary_rounded_box"
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/border"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mailTypeContainer" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mailRecyclerView"
@@ -35,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mailTypeContainer"
+        app:layout_constraintTop_toBottomOf="@id/border"
         tools:listitem="@layout/item_mail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

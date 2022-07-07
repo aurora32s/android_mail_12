@@ -13,11 +13,17 @@
     <color name="error">#E34974</color>
 
     <!-- light mode -->
-    <color name="primary">#1B1B1B</color>
+    <color name="primary">#898AA6</color>
     <color name="accent">#E34968</color>
     <color name="disabled">#E3E3E3</color>
 
     <!--status bar -->
     <color name="status_bar">#EAEAEA</color>
+
+    <!-- profile image -->
+    <color name="profile_color_1">#6E85B7</color>
+    <color name="profile_color_2">#B2C8DF</color>
+    <color name="profile_color_3">#C4D7E0</color>
+    <color name="profile_color_4">#F8F9D7</color>
 
 </resources>

@@ -11,7 +11,7 @@ class MailRepository {
             val mockData = (0..100).map {
                 MailEntity(
                     id = it,
-                    sender = "${it}th sender",
+                    sender = if (it % 2 == 0) "${it}th sender" else "sender ${it}th",
                     title = "title $it",
                     content = "content $it",
                     date = Date(),

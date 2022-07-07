@@ -3,6 +3,7 @@ package com.seom.seommain.data.entity
 import com.seom.seommain.extension.format
 import com.seom.seommain.model.mail.MailModel
 import com.seom.seommain.model.mail.MailType
+import com.seom.seommain.model.mail.ProfileImageType
 import java.util.*
 
 data class MailEntity(
@@ -18,6 +19,8 @@ data class MailEntity(
         title = title,
         content = content,
         date = date.format(),
-        type = MailType.getType(type) ?: MailType.PRIMARY
+        type = MailType.getType(type) ?: MailType.PRIMARY,
+        profileImageType = ProfileImageType.getProfileImageType(sender),
+        profileBackgroundColor = MailModel.getRandomBackground()
     )
 }

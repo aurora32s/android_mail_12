@@ -7,23 +7,46 @@
     android:layout_margin="5dp"
     android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/senderImageView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/senderProfileImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:layout_constraintBottom_toBottomOf="@id/mailInfoContainer"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@id/mailInfoContainer"
+        android:background="@drawable/background_rounded_solid"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mailInfoContainer" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:backgroundTint="@color/accent">
+
+        <ImageView
+            android:id="@+id/profileimageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/profileTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            tools:text="I" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/mailInfoContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/senderImageView"
+        app:layout_constraintStart_toEndOf="@id/senderProfileImage"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
