@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun bindViews() = with(binding) {
         // nickname input
         nicknameEditText.addTextChangedListener {
-            // TODO nickname 유효성 검사
+            // nickname 유효성 검사
             it?.let {
                 Validation.checkValidateNickname(it.toString())?.let { errorMsg ->
                     nicknameTextInput.error = getString(errorMsg)
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
         // email
         emailEditText.addTextChangedListener {
-            // TODO email 유효성 검사
+            // email 유효성 검사
             it?.let {
                 Validation.checkValidateEmail(it.toString())?.let { errorMsg ->
                     emailTextInput.error = getString(errorMsg)
@@ -63,6 +63,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setEnabledNextBtn() = with(binding) {
-        nextButton.isEnabled = validateFlagForNickname || validateFlagForEmail
+        nextButton.isEnabled = validateFlagForNickname && validateFlagForEmail
     }
 }
