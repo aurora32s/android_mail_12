@@ -16,6 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.seom.seommain.databinding.ActivityHomeBinding
 import com.seom.seommain.databinding.DrawerHeaderBinding
 import com.seom.seommain.databinding.HomeBodyVerticalBinding
+import com.seom.seommain.extension.pop
+import com.seom.seommain.extension.push
+import com.seom.seommain.extension.replace
 import com.seom.seommain.mail.MailFragment
 import com.seom.seommain.model.mail.MailType
 import com.seom.seommain.setting.SettingFragment
@@ -88,7 +91,7 @@ class HomeActivity : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener {
             viewModel.changeDrawerSelectedType(
-                when(it.itemId) {
+                when (it.itemId) {
                     R.id.primaryMailType -> MailType.PRIMARY
                     R.id.socialMailType -> MailType.SOCIAL
                     R.id.promotionMailType -> MailType.PROMOTION
@@ -104,29 +107,19 @@ class HomeActivity : AppCompatActivity() {
         val navigationType = viewModel.navigationType ?: R.id.mailMenuItem
         when (navigationType) {
             R.id.mailMenuItem -> {
-                replaceFragment(mailFragment, MailFragment.TAG)
+                supportFragmentManager.replace(
+                    mailFragment,
+                    R.id.fragmentContainer
+                )
                 showAppBar()
             }
             R.id.settingMenuItem -> {
-                replaceFragment(settingFragment, SettingFragment.TAG)
+                supportFragmentManager.push(
+                    settingFragment,
+                    R.id.fragmentContainer,
+                    R.id.mailMenuItem.toString()
+                )
                 hideAppBar()
-            }
-        }
-    }
-
-    private fun replaceFragment(fragment: Fragment, tag: String) {
-        val findFragment = supportFragmentManager.findFragmentByTag(tag)
-
-        supportFragmentManager.fragments.forEach { fm ->
-            supportFragmentManager.beginTransaction().hide(fm).commitAllowingStateLoss()
-        }
-
-        findFragment?.let {
-            supportFragmentManager.beginTransaction().show(it).commitAllowingStateLoss()
-        } ?: kotlin.run {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragmentContainer, fragment, tag)
-                commit()
             }
         }
     }
@@ -141,5 +134,16 @@ class HomeActivity : AppCompatActivity() {
                 putExtra(USER_NAME, nickname)
                 putExtra(USER_EMAIL, email)
             }
+    }
+
+    override fun onBackPressed() {
+        // 1. setting tab에서 back button 클릭 시에는 mail tab으로 이동
+        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.pop()?.let {
+                val navigationId = it.toInt()
+                binding.bottomNavigation.selectedItemId = navigationId
+            }
+        }
     }
 }
