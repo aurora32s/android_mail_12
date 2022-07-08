@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/primaryMailType"
+        android:icon="@drawable/ic_primary"
         android:title="@string/mail_type_primary" />
     <item
         android:id="@+id/socialMailType"
+        android:icon="@drawable/ic_social"
         android:title="@string/mail_type_social" />
     <item
         android:id="@+id/promotionMailType"
+        android:icon="@drawable/ic_promotion"
         android:title="@string/mail_type_promotion" />
 </menu>

@@ -12,14 +12,18 @@ import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import com.seom.seommain.databinding.ActivityHomeBinding
 import com.seom.seommain.databinding.DrawerHeaderBinding
 import com.seom.seommain.databinding.HomeBodyVerticalBinding
 import com.seom.seommain.mail.MailFragment
 import com.seom.seommain.model.mail.MailType
 import com.seom.seommain.setting.SettingFragment
+import com.seom.seommain.viewModel.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
+    //viewmodel
+    val viewModel by lazy { ViewModelProvider(this).get(HomeViewModel::class.java) }
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -29,9 +33,6 @@ class HomeActivity : AppCompatActivity() {
 
     // drawer
     private lateinit var drawerToggle: ActionBarDrawerToggle
-    private val _mailTypeLiveData = MutableLiveData<MailType>(MailType.PRIMARY)
-    val mailTypeLiveData
-        get() = _mailTypeLiveData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,13 +94,14 @@ class HomeActivity : AppCompatActivity() {
         }
 
         navigationView.setNavigationItemSelectedListener {
-            when(it.itemId) {
-                R.id.primaryMailType -> _mailTypeLiveData.value = MailType.PRIMARY
-                R.id.socialMailType -> _mailTypeLiveData.value = MailType.SOCIAL
-                R.id.promotionMailType -> _mailTypeLiveData.value = MailType.PROMOTION
-                else -> {}
-            }
-
+            viewModel.changeDrawerSelectedType(
+                when(it.itemId) {
+                    R.id.primaryMailType -> MailType.PRIMARY
+                    R.id.socialMailType -> MailType.SOCIAL
+                    R.id.promotionMailType -> MailType.PROMOTION
+                    else -> MailType.PRIMARY
+                }
+            )
             binding.root.closeDrawer(binding.navigationView)
             false
         }

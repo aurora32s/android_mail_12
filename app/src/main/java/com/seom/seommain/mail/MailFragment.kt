@@ -1,20 +1,29 @@
 package com.seom.seommain.mail
 
+import android.graphics.LinearGradient
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seom.seommain.HomeActivity
 import com.seom.seommain.adapter.mail.MailAdapter
 import com.seom.seommain.databinding.FragmentMailBinding
+import com.seom.seommain.model.mail.MailType
+import com.seom.seommain.viewModel.HomeViewModel
 
 class MailFragment : Fragment() {
 
     private val viewModel = MailViewModel()
+    private val sharedViewModel by lazy {
+        ViewModelProvider(activity as HomeActivity).get(
+            HomeViewModel::class.java
+        )
+    }
     private lateinit var binding: FragmentMailBinding
 
     private val mailAdapter by lazy {
@@ -33,16 +42,18 @@ class MailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observeData()
-        observeMailTypeData()
+        initViews()
     }
 
     override fun onResume() {
         super.onResume()
+        // 메일 데이터 요청
+        viewModel.fetchData()
+        observeMailTypeData()
+        observeData()
     }
 
     private fun initViews() = with(binding) {
-
         mailRecyclerView.layoutManager = LinearLayoutManager(this@MailFragment.context)
         mailRecyclerView.addItemDecoration(
             DividerItemDecoration(
@@ -62,8 +73,6 @@ class MailFragment : Fragment() {
             MailState.UnInitialized -> {
                 initViews()
                 bindViews()
-                // 메일 데이터 요청
-                viewModel.fetchData()
             }
             MailState.Loading -> handleLoadingState()
             is MailState.Success -> handleSuccessState(it)
@@ -72,8 +81,8 @@ class MailFragment : Fragment() {
     }
 
     private fun observeMailTypeData() {
-        (activity as HomeActivity).mailTypeLiveData.observe(viewLifecycleOwner) {
-            viewModel.changeMailType(it)
+        sharedViewModel.drawerSelectedType.observe(activity as HomeActivity) {
+            viewModel.changeMailType(it as MailType)
         }
     }
 
@@ -83,6 +92,7 @@ class MailFragment : Fragment() {
 
     private fun handleSuccessState(state: MailState.Success) {
 
+        Log.d(TAG, "handle success")
         binding.mailTypeTextView.text = "\uD83D\uDC49\uD83C\uDFFB ${state.mailType}"
         // recycler list 변경
         mailAdapter.submitList(state.mails)

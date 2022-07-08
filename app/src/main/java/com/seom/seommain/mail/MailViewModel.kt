@@ -31,7 +31,7 @@ class MailViewModel : ViewModel() {
     }
 
     fun changeMailType(mailType: MailType) {
-        // mail type에 따른 리스트 반환
+        // 사용자에 의해 mailType이 변경된 경우
         _mailStateLiveData.value = MailState.Success(
             mailType.typeName,
             mailList.filter { it.type === mailType }

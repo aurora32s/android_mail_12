@@ -1,6 +1,8 @@
 package com.seom.seommain.model.mail
 
-enum class MailType(val typeName: String) {
+import com.seom.seommain.model.BaseType
+
+enum class MailType(val typeName: String): BaseType {
     PRIMARY("primary"),
     SOCIAL("social"),
     PROMOTION("promotion");
