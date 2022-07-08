@@ -43,7 +43,8 @@ class HomeActivity : AppCompatActivity() {
         initViews()
         bindViews()
 
-        replaceFragment(mailFragment, MailFragment.TAG)
+//        replaceFragment(mailFragment, MailFragment.TAG)
+        changeFragmentById()
     }
 
     private fun showAppBar() {
@@ -80,16 +81,8 @@ class HomeActivity : AppCompatActivity() {
 
     private fun bindViews() = with(binding) {
         bottomNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.mailMenuItem -> {
-                    replaceFragment(mailFragment, MailFragment.TAG)
-                    showAppBar()
-                }
-                R.id.settingMenuItem -> {
-                    replaceFragment(settingFragment, SettingFragment.TAG)
-                    hideAppBar()
-                }
-            }
+            viewModel.navigationType = it.itemId
+            changeFragmentById()
             true
         }
 
@@ -104,6 +97,20 @@ class HomeActivity : AppCompatActivity() {
             )
             binding.root.closeDrawer(binding.navigationView)
             false
+        }
+    }
+
+    private fun changeFragmentById() {
+        val navigationType = viewModel.navigationType ?: R.id.mailMenuItem
+        when (navigationType) {
+            R.id.mailMenuItem -> {
+                replaceFragment(mailFragment, MailFragment.TAG)
+                showAppBar()
+            }
+            R.id.settingMenuItem -> {
+                replaceFragment(settingFragment, SettingFragment.TAG)
+                hideAppBar()
+            }
         }
     }
 

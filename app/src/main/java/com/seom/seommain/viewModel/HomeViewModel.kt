@@ -11,6 +11,9 @@ class HomeViewModel: ViewModel() {
     val drawerSelectedType
         get() = _drawerSelectedType
 
+    // bottom navigation item Id
+    var navigationType: Int? = null
+
     fun changeDrawerSelectedType(type: BaseType) {
         _drawerSelectedType.value = type
     }
