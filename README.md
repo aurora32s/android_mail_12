@@ -10,3 +10,6 @@
 |tooll|Android Studio|
 |Language|Kotlin|
 <br/>
+
+## 🔥 화면
+<img width="777" alt="스크린샷 2022-09-02 오후 8 10 31" src="https://user-images.githubusercontent.com/22411296/188127307-a102b002-bbb6-4dc5-bd63-33434f85cd83.png">
