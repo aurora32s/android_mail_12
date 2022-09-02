@@ -124,18 +124,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        const val TAG = ".HomeActivity"
-        const val USER_NAME = "UserName"
-        const val USER_EMAIL = "UserEmail"
-
-        fun getIntent(context: Context, nickname: String, email: String) =
-            Intent(context, HomeActivity::class.java).apply {
-                putExtra(USER_NAME, nickname)
-                putExtra(USER_EMAIL, email)
-            }
-    }
-
     override fun onBackPressed() {
         // 1. setting tab에서 back button 클릭 시에는 mail tab으로 이동
         super.onBackPressed()
@@ -145,5 +133,17 @@ class HomeActivity : AppCompatActivity() {
                 binding.bottomNavigation.selectedItemId = navigationId
             }
         }
+    }
+
+    companion object {
+        const val TAG = ".HomeActivity"
+        const val USER_NAME = "UserName"
+        const val USER_EMAIL = "UserEmail"
+
+        fun getIntent(context: Context, nickname: String, email: String) =
+            Intent(context, HomeActivity::class.java).apply {
+                putExtra(USER_NAME, nickname) // 사용자 닉네임
+                putExtra(USER_EMAIL, email) // 사용자 이메일
+            }
     }
 }
