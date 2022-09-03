@@ -20,7 +20,7 @@ class MailViewModel(
 
     private val mailType = MutableStateFlow(MailType.PRIMARY)
     private val _mails = MutableStateFlow<List<MailModel>>(emptyList())
-    val mails = _mails.combine(mailType) { mails, mailType ->
+    val mails = _mails.asStateFlow().combine(mailType) { mails, mailType ->
         mails.filter { it.type == mailType }
     }
 
@@ -28,7 +28,7 @@ class MailViewModel(
         viewModelScope.launch {
             mailRepository.getAllMail()
                 .onSuccess {
-                    _mails.value = it.map { it.toModel() }
+                    _mails.value = it.map { mail -> mail.toModel() }
                     _mailUiState.value = MailUiState.Success
                 }
                 .onFailure {

@@ -76,6 +76,11 @@ class MailFragment : Fragment() {
                         }
                     }
                 }
+                launch {
+                    sharedViewModel.drawerSelectedType.collect {
+                        viewModel.changeMailType(it as MailType)
+                    }
+                }
             }
         }
     }
