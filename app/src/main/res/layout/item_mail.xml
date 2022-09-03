@@ -6,6 +6,7 @@
         <variable
             name="mail"
             type="com.seom.seommain.ui.model.mail.MailModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,31 +17,44 @@
         android:layout_margin="5dp"
         android:padding="8dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_profile"
+        <View
+            android:id="@+id/gv_profile"
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_profile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_user"
+            app:layout_constraintBottom_toBottomOf="@id/gv_profile"
+            app:layout_constraintEnd_toEndOf="@id/gv_profile"
+            app:layout_constraintStart_toStartOf="@id/gv_profile"
+            app:layout_constraintTop_toTopOf="@id/gv_profile" />
+
         <TextView
             android:id="@+id/txt_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/background_rounded_solid"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/img_profile"
-            app:layout_constraintEnd_toEndOf="@id/img_profile"
-            app:layout_constraintStart_toStartOf="@id/img_profile"
-            app:layout_constraintTop_toTopOf="@id/img_profile"
+            app:layout_constraintBottom_toBottomOf="@id/gv_profile"
+            app:layout_constraintEnd_toEndOf="@id/gv_profile"
+            app:layout_constraintStart_toStartOf="@id/gv_profile"
+            app:layout_constraintTop_toTopOf="@id/gv_profile"
+            tools:backgroundTint="@color/black"
             tools:text="I" />
 
         <TextView
             android:id="@+id/txt_sender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{mail.sender}"
@@ -48,8 +62,8 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/txt_date"
-            app:layout_constraintStart_toEndOf="@id/img_profile"
-            app:layout_constraintTop_toTopOf="@id/img_profile"
+            app:layout_constraintStart_toEndOf="@id/gv_profile"
+            app:layout_constraintTop_toTopOf="@id/gv_profile"
             tools:text="sender" />
 
         <TextView
@@ -61,7 +75,7 @@
             android:textColor="@color/black"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/img_profile"
+            app:layout_constraintTop_toTopOf="@id/gv_profile"
             tools:text="2022.01.12" />
 
         <TextView
