@@ -3,6 +3,7 @@ package com.seom.seommain.util.extension
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
+import com.seom.seommain.ui.home.mail.MailFragment
 
 fun FragmentManager.replace(
     containerId: Int,
@@ -13,6 +14,29 @@ fun FragmentManager.replace(
         setReorderingAllowed(true)
         addToBackStack(fragmentTag)
         replace(containerId, fragment, fragmentTag)
+    }
+}
+
+fun FragmentManager.toMailTab(
+    containerId: Int
+) {
+    // 첫 home 화면 진입 시
+    if (this.backStackEntryCount == 0) {
+        this.commit {
+            setReorderingAllowed(true)
+            add(containerId, MailFragment.newInstance(), MailFragment.TAG)
+        }
+    }
+}
+
+fun FragmentManager.add(
+    containerId: Int,
+    fragment: Fragment,
+    fragmentTag: String? = null
+) {
+    this.commit {
+        setReorderingAllowed(true)
+        add(containerId, fragment, fragmentTag)
     }
 }
 

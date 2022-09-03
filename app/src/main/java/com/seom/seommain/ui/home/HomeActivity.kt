@@ -17,7 +17,9 @@ import com.seom.seommain.databinding.DrawerHeaderBinding
 import com.seom.seommain.ui.home.mail.MailFragment
 import com.seom.seommain.ui.home.setting.SettingFragment
 import com.seom.seommain.ui.model.mail.MailType
+import com.seom.seommain.util.extension.add
 import com.seom.seommain.util.extension.replace
+import com.seom.seommain.util.extension.toMailTab
 
 class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
@@ -92,11 +94,7 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         viewModel.bottomSelectedTab.observe(this@HomeActivity) {
             when (it) {
                 R.id.mailMenuItem -> { // mail tab
-                    supportFragmentManager.replace(
-                        R.id.fragmentContainer,
-                        MailFragment.newInstance(),
-                        MailFragment.TAG
-                    )
+                    supportFragmentManager.toMailTab(R.id.fragmentContainer)
                     binding.toolbar.isVisible = true
                 }
                 R.id.settingMenuItem -> { // setting tab
