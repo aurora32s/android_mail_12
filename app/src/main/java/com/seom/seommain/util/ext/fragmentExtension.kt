@@ -26,17 +26,9 @@ fun FragmentManager.toMailTab(
             setReorderingAllowed(true)
             add(containerId, MailFragment.newInstance(), MailFragment.TAG)
         }
-    }
-}
-
-fun FragmentManager.add(
-    containerId: Int,
-    fragment: Fragment,
-    fragmentTag: String? = null
-) {
-    this.commit {
-        setReorderingAllowed(true)
-        add(containerId, fragment, fragmentTag)
+    } else {
+        // setting tab 에서 mail tab 으로 이동
+        this.popBackStack()
     }
 }
 

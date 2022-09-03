@@ -14,10 +14,8 @@ import com.google.android.material.navigationrail.NavigationRailView
 import com.seom.seommain.R
 import com.seom.seommain.databinding.ActivityHomeBinding
 import com.seom.seommain.databinding.DrawerHeaderBinding
-import com.seom.seommain.ui.home.mail.MailFragment
 import com.seom.seommain.ui.home.setting.SettingFragment
 import com.seom.seommain.ui.model.mail.MailType
-import com.seom.seommain.util.extension.add
 import com.seom.seommain.util.extension.replace
 import com.seom.seommain.util.extension.toMailTab
 
