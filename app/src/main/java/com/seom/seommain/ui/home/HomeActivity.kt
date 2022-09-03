@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -93,6 +95,7 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                         MailFragment.newInstance(),
                         MailFragment.TAG
                     )
+                    binding.toolbar.isVisible = true
                 }
                 R.id.settingMenuItem -> { // setting tab
                     supportFragmentManager.replace(
@@ -100,6 +103,7 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                         SettingFragment.newInstance(),
                         SettingFragment.TAG
                     )
+                    binding.toolbar.isGone = true
                 }
             }
         }

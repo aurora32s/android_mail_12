@@ -16,7 +16,7 @@ data class MailModel(
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MailModel>() {
             override fun areItemsTheSame(oldItem: MailModel, newItem: MailModel) =
-                oldItem.title === newItem.title
+                oldItem.title == newItem.title
 
             override fun areContentsTheSame(oldItem: MailModel, newItem: MailModel) =
                 oldItem == newItem

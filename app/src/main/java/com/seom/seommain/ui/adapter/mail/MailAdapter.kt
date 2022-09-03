@@ -6,13 +6,15 @@ import androidx.recyclerview.widget.ListAdapter
 import com.seom.seommain.databinding.ItemMailBinding
 import com.seom.seommain.ui.model.mail.MailModel
 
-class MailAdapter() : ListAdapter<MailModel, MailViewHolder>(MailModel.DIFF_CALLBACK) {
-
-    override fun getItemViewType(position: Int): Int = currentList[position].type.ordinal
+class MailAdapter : ListAdapter<MailModel, MailViewHolder>(MailModel.DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MailViewHolder {
         return MailViewHolder(
-            ItemMailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemMailBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
