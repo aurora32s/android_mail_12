@@ -1,4 +1,4 @@
-package com.seom.seommain.setting
+package com.seom.seommain.ui.home.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater

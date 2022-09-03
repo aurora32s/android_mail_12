@@ -1,6 +1,5 @@
-package com.seom.seommain.mail
+package com.seom.seommain.ui.home.mail
 
-import android.graphics.LinearGradient
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.seom.seommain.HomeActivity
-import com.seom.seommain.adapter.mail.MailAdapter
+import com.seom.seommain.ui.home.HomeActivity
+import com.seom.seommain.ui.adapter.mail.MailAdapter
 import com.seom.seommain.databinding.FragmentMailBinding
-import com.seom.seommain.model.mail.MailType
-import com.seom.seommain.viewModel.HomeViewModel
+import com.seom.seommain.ui.model.mail.MailType
+import com.seom.seommain.ui.home.HomeViewModel
 
 class MailFragment : Fragment() {
 

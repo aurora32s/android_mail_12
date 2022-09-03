@@ -1,9 +1,9 @@
 package com.seom.seommain.data.entity
 
-import com.seom.seommain.extension.format
-import com.seom.seommain.model.mail.MailModel
-import com.seom.seommain.model.mail.MailType
-import com.seom.seommain.model.mail.ProfileImageType
+import com.seom.seommain.util.extension.format
+import com.seom.seommain.ui.model.mail.MailModel
+import com.seom.seommain.ui.model.mail.MailType
+import com.seom.seommain.ui.model.mail.ProfileImageType
 import java.util.*
 
 data class MailEntity(

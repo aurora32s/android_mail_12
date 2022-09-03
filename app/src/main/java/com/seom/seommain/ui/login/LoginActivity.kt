@@ -1,8 +1,8 @@
-package com.seom.seommain
+package com.seom.seommain.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.widget.addTextChangedListener
+import com.seom.seommain.ui.home.HomeActivity
 import com.seom.seommain.databinding.ActivityLoginBinding
 import com.seom.seommain.util.Validation
 import com.seom.seommain.util.ext.setValidationCheckListener

@@ -1,9 +1,8 @@
-package com.seom.seommain.model.mail
+package com.seom.seommain.ui.model.mail
 
-import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
 import com.seom.seommain.R
-import com.seom.seommain.model.Model
+import com.seom.seommain.ui.model.Model
 
 data class MailModel(
     val sender: String, // 송신인

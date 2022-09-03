@@ -1,28 +1,16 @@
-package com.seom.seommain
+package com.seom.seommain.ui.home
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.util.Log
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import com.seom.seommain.R
 import com.seom.seommain.databinding.ActivityHomeBinding
 import com.seom.seommain.databinding.DrawerHeaderBinding
-import com.seom.seommain.databinding.HomeBodyVerticalBinding
-import com.seom.seommain.extension.pop
-import com.seom.seommain.extension.push
-import com.seom.seommain.extension.replace
-import com.seom.seommain.mail.MailFragment
-import com.seom.seommain.model.mail.MailType
-import com.seom.seommain.setting.SettingFragment
-import com.seom.seommain.viewModel.HomeViewModel
+import com.seom.seommain.util.extension.pop
+import com.seom.seommain.ui.model.mail.MailType
 
 class HomeActivity : AppCompatActivity() {
 

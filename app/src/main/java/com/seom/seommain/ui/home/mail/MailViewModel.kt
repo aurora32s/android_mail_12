@@ -1,10 +1,10 @@
-package com.seom.seommain.mail
+package com.seom.seommain.ui.home.mail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.seom.seommain.model.mail.MailModel
+import com.seom.seommain.ui.model.mail.MailModel
 import com.seom.seommain.data.repository.MailRepository
-import com.seom.seommain.model.mail.MailType
+import com.seom.seommain.ui.model.mail.MailType
 
 class MailViewModel : ViewModel() {
 

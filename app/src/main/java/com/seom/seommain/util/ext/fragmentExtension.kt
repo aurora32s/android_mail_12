@@ -1,4 +1,4 @@
-package com.seom.seommain.extension
+package com.seom.seommain.util.extension
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

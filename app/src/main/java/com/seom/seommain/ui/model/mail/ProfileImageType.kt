@@ -1,6 +1,4 @@
-package com.seom.seommain.model.mail
-
-import android.util.Log
+package com.seom.seommain.ui.model.mail
 
 enum class ProfileImageType {
     LETTER,

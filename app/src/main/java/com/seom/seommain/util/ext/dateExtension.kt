@@ -1,4 +1,4 @@
-package com.seom.seommain.extension
+package com.seom.seommain.util.extension
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat

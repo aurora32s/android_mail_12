@@ -1,6 +1,6 @@
-package com.seom.seommain.mail
+package com.seom.seommain.ui.home.mail
 
-import com.seom.seommain.model.mail.MailModel
+import com.seom.seommain.ui.model.mail.MailModel
 
 sealed interface MailState {
 

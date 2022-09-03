@@ -14,7 +14,7 @@
         android:theme="@style/Theme.SeomMail"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name="com.seom.seommain.ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name="com.seom.seommain.ui.home.HomeActivity"
             android:exported="false" />
     </application>
 

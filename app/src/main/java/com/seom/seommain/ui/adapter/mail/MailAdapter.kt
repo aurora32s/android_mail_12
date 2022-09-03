@@ -1,13 +1,10 @@
-package com.seom.seommain.adapter.mail
+package com.seom.seommain.ui.adapter.mail
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.seom.seommain.databinding.ItemMailBinding
-import com.seom.seommain.model.mail.MailModel
+import com.seom.seommain.ui.model.mail.MailModel
 
 class MailAdapter() : ListAdapter<MailModel, MailViewHolder>(MailModel.DIFF_CALLBACK) {
 
