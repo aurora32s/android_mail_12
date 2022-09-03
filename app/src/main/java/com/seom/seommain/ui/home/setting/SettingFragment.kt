@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.seom.seommain.databinding.FragmentSettingBinding
 
-class SettingFragment: Fragment() {
+class SettingFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingBinding
 
@@ -26,5 +26,6 @@ class SettingFragment: Fragment() {
 
     companion object {
         const val TAG = "SettingFragment"
+        fun newInstance() = SettingFragment()
     }
 }

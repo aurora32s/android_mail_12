@@ -4,15 +4,20 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigationrail.NavigationRailView
 import com.seom.seommain.R
 import com.seom.seommain.databinding.ActivityHomeBinding
 import com.seom.seommain.databinding.DrawerHeaderBinding
-import com.seom.seommain.util.extension.pop
+import com.seom.seommain.ui.home.mail.MailFragment
+import com.seom.seommain.ui.home.setting.SettingFragment
 import com.seom.seommain.ui.model.mail.MailType
+import com.seom.seommain.util.extension.replace
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityHomeBinding
     private val viewModel by lazy {
@@ -49,13 +54,14 @@ class HomeActivity : AppCompatActivity() {
 
     private fun bindViews() = with(binding) {
         // bottom tab 변경
-//        bottomNavigation.setOnItemSelectedListener {setOnItemSelectedListener
-//            viewModel.changeBottomSelectedTab(it.itemId)
-//            /**
-//             * bottom sheet 의 icon 변경 동작까지 수행하려면 true 반환
-//             */
-//            true
-//        }
+        when (bottomNavigation) {
+            is BottomNavigationView -> {
+                bottomNavigation.setOnItemSelectedListener(this@HomeActivity)
+            }
+            is NavigationRailView -> {
+                bottomNavigation.setOnItemSelectedListener(this@HomeActivity)
+            }
+        }
 
         // navigation drawer 에서 mail 타입 변경
         navigationView.setNavigationItemSelectedListener {
@@ -72,15 +78,28 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        viewModel.changeBottomSelectedTab(item.itemId)
+        return true
+    }
+
     private fun initObserve() {
         // bottom tab item observe
         viewModel.bottomSelectedTab.observe(this@HomeActivity) {
             when (it) {
                 R.id.mailMenuItem -> { // mail tab
-                    // TODO mail 탭으로 변경
+                    supportFragmentManager.replace(
+                        R.id.fragmentContainer,
+                        MailFragment.newInstance(),
+                        MailFragment.TAG
+                    )
                 }
                 R.id.settingMenuItem -> { // setting tab
-                    // TODO setting 탭으로 변경
+                    supportFragmentManager.replace(
+                        R.id.fragmentContainer,
+                        SettingFragment.newInstance(),
+                        SettingFragment.TAG
+                    )
                 }
             }
         }

@@ -103,5 +103,7 @@ class MailFragment : Fragment() {
 
     companion object {
         const val TAG = "MailFragment"
+
+        fun newInstance() = MailFragment()
     }
 }
