@@ -1,102 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:padding="10dp">
+<layout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/senderProfileImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/background_rounded_solid"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:backgroundTint="@color/accent">
+    <data>
 
-        <ImageView
-            android:id="@+id/profileimageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:src="@drawable/ic_user"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        <variable
+            name="mail"
+            type="com.seom.seommain.ui.model.mail.MailModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/profileTextView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/txt_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="40sp"
             android:textStyle="bold"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/img_profile"
+            app:layout_constraintEnd_toEndOf="@id/img_profile"
+            app:layout_constraintStart_toStartOf="@id/img_profile"
+            app:layout_constraintTop_toTopOf="@id/img_profile"
             tools:text="I" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/mailInfoContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/senderProfileImage"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/senderTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="sender" />
-
-            <TextView
-                android:id="@+id/dateTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="11sp"
-                tools:text="sender" />
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
+            android:id="@+id/txt_sender"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{mail.sender}"
             android:textColor="@color/black"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/txt_date"
+            app:layout_constraintStart_toEndOf="@id/img_profile"
+            app:layout_constraintTop_toTopOf="@id/img_profile"
             tools:text="sender" />
 
         <TextView
-            android:id="@+id/contentTextView"
+            android:id="@+id/txt_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{mail.date}"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_profile"
+            tools:text="2022.01.12" />
+
+        <TextView
+            android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{mail.title}"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/txt_sender"
+            app:layout_constraintTop_toBottomOf="@id/txt_sender"
             tools:text="sender" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txt_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{mail.content}"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/txt_sender"
+            app:layout_constraintTop_toBottomOf="@id/txt_title"
+            tools:text="sender" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
