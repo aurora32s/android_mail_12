@@ -109,6 +109,12 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onBackPressed() {
         // 1. mail tab 에서 back button 클릭
         if (supportFragmentManager.backStackEntryCount == 0) {
+            // 선택한 mail type 이 없는 경우
+            if (viewModel.stackForMailType.isEmpty()) {
+                super.onBackPressed()
+            } else {
+                viewModel.popMailType()
+            }
         } else { // 2. setting tab 에서 back button 클릭
             viewModel.changeBottomSelectedTab(R.id.mailMenuItem)
         }
