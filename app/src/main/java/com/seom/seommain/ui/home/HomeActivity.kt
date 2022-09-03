@@ -35,15 +35,16 @@ class HomeActivity : AppCompatActivity() {
         // drawer 기본 setting
         root.setActionBarDrawerToggle(this@HomeActivity, toolbar)
 
-        val nickname = intent.getStringExtra(USER_NAME) ?: "익명님"
-        val email = intent.getStringExtra(USER_EMAIL) ?: "없음"
+        // navigation drawer header setting
+        DrawerHeaderBinding.bind(
+            navigationView.getHeaderView(0)
+        ).run {
+            val nickname = intent.getStringExtra(USER_NAME) ?: "익명님"
+            val email = intent.getStringExtra(USER_EMAIL) ?: "없음"
 
-        // navigation header data binding
-        val headerView = navigationView.getHeaderView(0)
-        val headerBinding = DrawerHeaderBinding.bind(headerView)
-
-        headerBinding.nicknameTextView.text = nickname
-        headerBinding.emailTextView.text = email
+            nicknameTextView.text = nickname
+            emailTextView.text = email
+        }
     }
 
     private fun bindViews() = with(binding) {
