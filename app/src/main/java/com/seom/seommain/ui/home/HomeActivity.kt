@@ -48,10 +48,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun bindViews() = with(binding) {
-        bottomNavigation.setOnItemSelectedListener {
-            true
-        }
+        // bottom tab 변경
+//        bottomNavigation.setOnItemSelectedListener {setOnItemSelectedListener
+//            viewModel.changeBottomSelectedTab(it.itemId)
+//            /**
+//             * bottom sheet 의 icon 변경 동작까지 수행하려면 true 반환
+//             */
+//            true
+//        }
 
+        // navigation drawer 에서 mail 타입 변경
         navigationView.setNavigationItemSelectedListener {
             viewModel.changeDrawerSelectedType(
                 when (it.itemId) {
@@ -61,7 +67,7 @@ class HomeActivity : AppCompatActivity() {
                     else -> MailType.PRIMARY
                 }
             )
-            binding.root.closeDrawer(binding.navigationView)
+            root.closeDrawer(navigationView)
             false
         }
     }
@@ -76,16 +82,6 @@ class HomeActivity : AppCompatActivity() {
                 R.id.settingMenuItem -> { // setting tab
                     // TODO setting 탭으로 변경
                 }
-            }
-        }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.pop()?.let {
-                val navigationId = it.toInt()
-                binding.bottomNavigation.selectedItemId = navigationId
             }
         }
     }

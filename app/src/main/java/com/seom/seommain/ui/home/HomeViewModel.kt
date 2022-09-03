@@ -20,4 +20,11 @@ class HomeViewModel : ViewModel() {
     fun changeDrawerSelectedType(type: BaseType) {
         _drawerSelectedType.value = type
     }
+
+    /**
+     * bottom tab 변경
+     */
+    fun changeBottomSelectedTab(tabId: Int) {
+        _bottomSelectedTab.value = tabId
+    }
 }
