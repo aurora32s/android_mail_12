@@ -78,7 +78,10 @@ class MailFragment : Fragment() {
                 }
                 launch {
                     sharedViewModel.drawerSelectedType.collect {
-                        viewModel.changeMailType(it as MailType)
+                        (it as? MailType)?.let { type ->
+                            binding.mailTypeTextView.text = (type.typeName)
+                            viewModel.changeMailType(type)
+                        }
                     }
                 }
             }

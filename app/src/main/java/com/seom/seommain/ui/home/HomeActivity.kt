@@ -52,6 +52,8 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             nicknameTextView.text = nickname
             emailTextView.text = email
         }
+
+        viewModel.changeBottomSelectedTab(R.id.mailMenuItem)
     }
 
     private fun bindViews() = with(binding) {
