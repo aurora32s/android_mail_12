@@ -25,37 +25,23 @@ import com.seom.seommain.setting.SettingFragment
 import com.seom.seommain.viewModel.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
-    //viewmodel
-    val viewModel by lazy { ViewModelProvider(this).get(HomeViewModel::class.java) }
+
+    //viewModel
+    private val viewModel by lazy { ViewModelProvider(this).get(HomeViewModel::class.java) }
 
     private lateinit var binding: ActivityHomeBinding
-
-    // fragments
-    private val mailFragment = MailFragment()
-    private val settingFragment = SettingFragment()
 
     // drawer
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initObserve()
         initViews()
         bindViews()
-
-//        replaceFragment(mailFragment, MailFragment.TAG)
-        changeFragmentById()
-    }
-
-    private fun showAppBar() {
-        binding.toolbar.isVisible = true
-    }
-
-    private fun hideAppBar() {
-        binding.toolbar.isGone = true
     }
 
     private fun initViews() = with(binding) {
@@ -84,8 +70,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun bindViews() = with(binding) {
         bottomNavigation.setOnItemSelectedListener {
-            viewModel.navigationType = it.itemId
-            changeFragmentById()
             true
         }
 
@@ -103,23 +87,16 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeFragmentById() {
-        val navigationType = viewModel.navigationType ?: R.id.mailMenuItem
-        when (navigationType) {
-            R.id.mailMenuItem -> {
-                supportFragmentManager.replace(
-                    mailFragment,
-                    R.id.fragmentContainer
-                )
-                showAppBar()
-            }
-            R.id.settingMenuItem -> {
-                supportFragmentManager.push(
-                    settingFragment,
-                    R.id.fragmentContainer,
-                    R.id.mailMenuItem.toString()
-                )
-                hideAppBar()
+    private fun initObserve() {
+        // bottom tab item observe
+        viewModel.bottomSelectedTab.observe(this@HomeActivity) {
+            when (it) {
+                R.id.mailMenuItem -> { // mail tab
+                    // TODO mail 탭으로 변경
+                }
+                R.id.settingMenuItem -> { // setting tab
+                    // TODO setting 탭으로 변경
+                }
             }
         }
     }
