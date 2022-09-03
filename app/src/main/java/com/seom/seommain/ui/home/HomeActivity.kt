@@ -14,36 +14,26 @@ import com.seom.seommain.ui.model.mail.MailType
 
 class HomeActivity : AppCompatActivity() {
 
-    //viewModel
-    private val viewModel by lazy { ViewModelProvider(this).get(HomeViewModel::class.java) }
-
     private lateinit var binding: ActivityHomeBinding
-
-    // drawer
-    private lateinit var drawerToggle: ActionBarDrawerToggle
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(HomeViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initObserve()
         initViews()
+        initObserve()
         bindViews()
     }
 
     private fun initViews() = with(binding) {
         setSupportActionBar(toolbar)
 
-        drawerToggle = ActionBarDrawerToggle(
-            this@HomeActivity,
-            root,
-            toolbar,
-            R.string.app_name,
-            R.string.app_name
-        )
-        root.addDrawerListener(drawerToggle)
-        drawerToggle.syncState()
+        // drawer 기본 setting
+        root.setActionBarDrawerToggle(this@HomeActivity, toolbar)
 
         val nickname = intent.getStringExtra(USER_NAME) ?: "익명님"
         val email = intent.getStringExtra(USER_EMAIL) ?: "없음"
@@ -90,7 +80,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        // 1. setting tab에서 back button 클릭 시에는 mail tab으로 이동
         super.onBackPressed()
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.pop()?.let {
