@@ -15,6 +15,7 @@ fun TextInputEditText.setValidationCheckListener(
              */
             if (edit.toString().isBlank()) {
                 onResult(null)
+                return@let
             }
             onResult(validator(edit.toString()))
         }
