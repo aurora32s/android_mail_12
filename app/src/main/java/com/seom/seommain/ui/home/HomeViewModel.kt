@@ -27,6 +27,8 @@ class HomeViewModel : ViewModel() {
      * bottom tab 변경
      */
     fun changeBottomSelectedTab(tabId: Int) {
+        // 동일한 tab 을 클릭한 경우에는 무시
+        if (_bottomSelectedTab.value == tabId) return
         _bottomSelectedTab.value = tabId
     }
 }
