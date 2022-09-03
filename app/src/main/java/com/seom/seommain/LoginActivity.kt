@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
             Validation::checkValidateNickname,
             { errorMsg ->
                 txtNickname.error = errorMsg?.let { getString(errorMsg) }
-                validateFlagForNickname = (errorMsg == null).not()
+                validateFlagForNickname = errorMsg == null
             },
             ::setEnabledNextBtn
         )
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
             Validation::checkValidateEmail,
             { errorMsg ->
                 txtEmail.error = errorMsg?.let { getString(errorMsg) }
-                validateFlagForEmail = (errorMsg == null).not()
+                validateFlagForEmail = errorMsg == null
             },
             ::setEnabledNextBtn
         )
