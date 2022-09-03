@@ -58,14 +58,7 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     private fun bindViews() = with(binding) {
         // bottom tab 변경
-        when (bottomNavigation) {
-            is BottomNavigationView -> {
-                bottomNavigation.setOnItemSelectedListener(this@HomeActivity)
-            }
-            is NavigationRailView -> {
-                bottomNavigation.setOnItemSelectedListener(this@HomeActivity)
-            }
-        }
+        (bottomNavigation as? NavigationBarView)?.setOnItemSelectedListener(this@HomeActivity)
 
         // navigation drawer 에서 mail 타입 변경
         navigationView.setNavigationItemSelectedListener {
@@ -104,6 +97,20 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                     binding.toolbar.isGone = true
                 }
             }
+            it?.let { setNavigationItem(it) }
+        }
+    }
+
+    private fun setNavigationItem(itemId: Int) = with(binding) {
+        // bottom tab 변경
+        (bottomNavigation as? NavigationBarView)?.selectedItemId = itemId
+    }
+
+    override fun onBackPressed() {
+        // 1. mail tab 에서 back button 클릭
+        if (supportFragmentManager.backStackEntryCount == 0) {
+        } else { // 2. setting tab 에서 back button 클릭
+            viewModel.changeBottomSelectedTab(R.id.mailMenuItem)
         }
     }
 
