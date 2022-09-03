@@ -31,12 +31,15 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initViews()
-        initObserve()
+        val name = intent.getStringExtra(USER_NAME) ?: "익명님"
+        val email = intent.getStringExtra(USER_EMAIL) ?: "없음"
+
+        initViews(name, email)
+        initObserve(name, email)
         bindViews()
     }
 
-    private fun initViews() = with(binding) {
+    private fun initViews(name: String, email: String) = with(binding) {
         setSupportActionBar(toolbar)
 
         // drawer 기본 setting
@@ -46,10 +49,7 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         DrawerHeaderBinding.bind(
             navigationView.getHeaderView(0)
         ).run {
-            val nickname = intent.getStringExtra(USER_NAME) ?: "익명님"
-            val email = intent.getStringExtra(USER_EMAIL) ?: "없음"
-
-            nicknameTextView.text = nickname
+            nicknameTextView.text = name
             emailTextView.text = email
         }
 
@@ -87,7 +87,7 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         return true
     }
 
-    private fun initObserve() {
+    private fun initObserve(name: String, email: String) {
         // bottom tab item observe
         viewModel.bottomSelectedTab.observe(this@HomeActivity) {
             when (it) {
@@ -102,7 +102,7 @@ class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 R.id.settingMenuItem -> { // setting tab
                     supportFragmentManager.replace(
                         R.id.fragmentContainer,
-                        SettingFragment.newInstance(),
+                        SettingFragment.newInstance(name, email),
                         SettingFragment.TAG
                     )
                     binding.toolbar.isGone = true
