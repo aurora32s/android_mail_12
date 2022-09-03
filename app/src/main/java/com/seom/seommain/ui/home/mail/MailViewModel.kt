@@ -2,39 +2,43 @@ package com.seom.seommain.ui.home.mail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.seom.seommain.ui.model.mail.MailModel
 import com.seom.seommain.data.repository.MailRepository
 import com.seom.seommain.ui.model.mail.MailType
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 
-class MailViewModel : ViewModel() {
+class MailViewModel(
+    private val mailRepository: MailRepository = MailRepository()
+) : ViewModel() {
+    private val _mailUiState = MutableStateFlow<MailUiState>(MailUiState.UnInitialized)
+    val mailUiState = _mailUiState.asStateFlow()
 
-    // TODO 의존성 주입으로 변경
-    private val mailRepository = MailRepository()
-
-    private val _mailStateLiveData = MutableLiveData<MailState>(MailState.UnInitialized)
-    val mailStateLiveData
-        get() = _mailStateLiveData
-
-    private var mailList: List<MailModel> = emptyList()
+    private val mailType = MutableStateFlow(MailType.PRIMARY)
+    private val _mails = MutableStateFlow<List<MailModel>>(emptyList())
+    val mails = _mails.combine(mailType) { mails, mailType ->
+        mails.filter { it.type == mailType }
+    }
 
     fun fetchData() {
-        // mailList 초기화
-        _mailStateLiveData.value = MailState.Loading
-        val mails = mailRepository.getAllMail()
-
-        mails?.let {
-            mailList = mails.map { it.toModel() }
-            changeMailType(MailType.PRIMARY)
-        } ?: kotlin.run {
-            _mailStateLiveData.value = MailState.Error
+        viewModelScope.launch {
+            mailRepository.getAllMail()
+                .onSuccess {
+                    _mails.value = it.map { it.toModel() }
+                    _mailUiState.value = MailUiState.Success
+                }
+                .onFailure {
+                    _mailUiState.value = MailUiState.Error
+                }
         }
     }
 
-    fun changeMailType(mailType: MailType) {
-        // 사용자에 의해 mailType이 변경된 경우
-        _mailStateLiveData.value = MailState.Success(
-            mailType.typeName,
-            mailList.filter { it.type === mailType }
-        )
+    fun changeMailType(nextMailType: MailType) {
+        // 사용자에 의해 mailType 이 변경된 경우
+        mailType.value = nextMailType
     }
 }

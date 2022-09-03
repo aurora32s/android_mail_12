@@ -6,7 +6,7 @@ import java.util.*
 
 class MailRepository {
 
-    fun getAllMail(): List<MailEntity>? {
+    fun getAllMail(): Result<List<MailEntity>> =
         try {
             val mockData = (0..100).map {
                 MailEntity(
@@ -19,9 +19,8 @@ class MailRepository {
                 )
             }
 
-            return mockData.toList()
+            Result.success(mockData.toList())
         } catch (exception: Exception) {
-            return null
+            Result.failure(exception)
         }
-    }
 }
