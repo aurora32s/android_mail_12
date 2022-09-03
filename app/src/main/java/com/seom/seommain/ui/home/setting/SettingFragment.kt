@@ -1,5 +1,6 @@
 package com.seom.seommain.ui.home.setting
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,12 +21,15 @@ class SettingFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val userName = arguments?.getString(KEY_USER_NAME) ?: "UnKnown"
         val userEmail = arguments?.getString(KEY_USER_EMAIL) ?: "UnKnown"
 
+        binding.txtUserName.text = "이름: $userName"
+        binding.txtUserEmail.text = "이메일: $userEmail"
     }
 
     companion object {
