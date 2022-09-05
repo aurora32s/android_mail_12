@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -17,18 +19,15 @@ import com.seom.seommain.ui.adapter.mail.MailAdapter
 import com.seom.seommain.databinding.FragmentMailBinding
 import com.seom.seommain.ui.model.mail.MailType
 import com.seom.seommain.ui.home.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MailFragment : Fragment() {
 
-    // TODO 의존성 주입 도입할 때 코드 수정하기
-    private val viewModel = MailViewModel()
-    private val sharedViewModel by lazy {
-        ViewModelProvider(activity as HomeActivity).get(
-            HomeViewModel::class.java
-        )
-    }
+    private val viewModel: MailViewModel by viewModels()
+    private val sharedViewModel: HomeViewModel by activityViewModels()
 
     private lateinit var binding: FragmentMailBinding
     private val mailAdapter by lazy { MailAdapter() }

@@ -1,19 +1,20 @@
 package com.seom.seommain.ui.home.mail
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seom.seommain.ui.model.mail.MailModel
 import com.seom.seommain.data.repository.MailRepository
 import com.seom.seommain.ui.model.mail.MailType
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MailViewModel(
-    private val mailRepository: MailRepository = MailRepository()
+@HiltViewModel
+class MailViewModel @Inject constructor(
+    private val mailRepository: MailRepository
 ) : ViewModel() {
     private val _mailUiState = MutableStateFlow<MailUiState>(MailUiState.UnInitialized)
     val mailUiState = _mailUiState.asStateFlow()

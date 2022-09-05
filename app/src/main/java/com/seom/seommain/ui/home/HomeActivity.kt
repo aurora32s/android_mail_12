@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -18,13 +19,13 @@ import com.seom.seommain.ui.home.setting.SettingFragment
 import com.seom.seommain.ui.model.mail.MailType
 import com.seom.seommain.util.extension.replace
 import com.seom.seommain.util.extension.toMailTab
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityHomeBinding
-    private val viewModel by lazy {
-        ViewModelProvider(this).get(HomeViewModel::class.java)
-    }
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
